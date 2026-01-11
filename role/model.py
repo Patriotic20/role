@@ -1,6 +1,6 @@
 from typing import List
 from datetime import datetime
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import DateTime, func
 
 from core.database.base import Base
@@ -25,15 +25,15 @@ class Role(Base):
     )
     
     # Рекомендуется типизация Mapped[List["..."]] для Many-to-Many
-    users: Mapped[List["User"]] = relationship(
-        "User",
-        secondary="user_role",
-        back_populates="roles"
-    )
+    # users: Mapped[List["User"]] = relationship(
+    #     "User",
+    #     secondary="user_role",
+    #     back_populates="roles"
+    # )
     
-    # Исправлено имя связи на plural (permissions) и back_populates
-    permissions: Mapped[List["Permission"]] = relationship(
-        "Permission",
-        secondary="role_permission",
-        back_populates="roles" # Проверьте, что в Permission это поле называется 'roles'
-    )
+    # # Исправлено имя связи на plural (permissions) и back_populates
+    # permissions: Mapped[List["Permission"]] = relationship(
+    #     "Permission",
+    #     secondary="role_permission",
+    #     back_populates="roles" # Проверьте, что в Permission это поле называется 'roles'
+    # )
